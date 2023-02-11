@@ -15,7 +15,7 @@ from functions import *
 #     assert no_of_letters("xdddxd") == 6
 #     assert no_of_letters('mama.tata') == 8 #mozna ten warunek poprawic
 
-def test_fissbuzz_basic():
+def test_fizzbuzz_basic():
     assert fizzbuzz(1)==1
     assert fizzbuzz(2)==2
     assert fizzbuzz(3)=='fizz'
@@ -25,7 +25,7 @@ def test_fissbuzz_basic():
     assert fizzbuzz(10) == 'buzz'
     assert fizzbuzz(15) == 'fizzbuzz'
 
-def test_fissbuzz_adv():
+def test_fizzbuzz_adv():
     assert fizzbuzz(1.3) ==1
     assert fizzbuzz(1.9) == 1
     assert fizzbuzz('1') == 1
@@ -34,6 +34,6 @@ def test_fissbuzz_adv():
     assert fizzbuzz('5.99') == 'buzz'
     assert fizzbuzz(0) == None
     assert fizzbuzz(0.999) == None
-#     assert fizzbuzz('mama') == None
-#     assert fizzbuzz(-5) == None
-#     assert fizzbuzz('-15.8') == None
+    assert fizzbuzz('mama') == None
+    assert fizzbuzz(-5) == None
+    assert fizzbuzz('-15.8') == None

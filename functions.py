@@ -10,7 +10,10 @@
 #
 
 def fizzbuzz (i):
-    i=int(float(i))
+    try:
+        i=int(float(i))
+    except:
+        return None
     if i>0:
         if i%15 == 0:
             return "fizzbuzz"
