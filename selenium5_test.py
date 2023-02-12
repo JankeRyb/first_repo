@@ -4,17 +4,24 @@ from selenium4_klasa import LoginPage
 import time
 import pytest
 
-@pytest.mark.parametrize('uzytkownik',['standard_user','standard_user2'])
+test_data=[
+    ('standard_user','secret_sauce','https://www.saucedemo.com/inventory.html'),
+    ('locked_out_user','secret_sauce','https://www.saucedemo.com/'),
+    ('problem_user','secret_sauce','https://www.saucedemo.com/inventory.html'),
+    ('performance_glitch_user', 'secret_sauce', 'https://www.saucedemo.com/inventory.html'),
 
-def test_login_page(uzytkownik):
+]
+@pytest.mark.parametrize('user,password,url',test_data)
+
+def test_login_page(user,password,url):
     driver=webdriver.Chrome()
     page=LoginPage(driver)
     page.open()
-    page.enter_username(uzytkownik)
-    page.enter_password('secret_sauce')
+    page.enter_username(user)
+    page.enter_password(password)
     page.click_login_button()
     time.sleep(1)
     try:
-        assert driver.current_url == 'https://www.saucedemo.com/inventory.html', make_screenshot(driver)
+        assert driver.current_url == url, make_screenshot(driver)
     finally:
         driver.quit()
