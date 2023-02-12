@@ -4,9 +4,10 @@ import datetime
 from selenium.webdriver.support import expected_conditions as excon
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium_funkcje import make_screenshot
+from selenium.common.exceptions import TimeoutException
 
 def czekaj_na_id(element_id):
-    element_id='login-button'
+    #element_id='login-button'
     timeout=10
     timeout_message=f'Element o id {element_id} nie pojawil sie w czasie {timeout} s.'
 
@@ -16,10 +17,22 @@ def czekaj_na_id(element_id):
     oczekiwator=WebDriverWait(driver, timeout)
     return oczekiwator.until(znaleziono,timeout_message)
 
+opcje=webdriver.ChromeOptions()
+opcje.add_argument('headless')
+driver=webdriver.Chrome(options=opcje)
 
-driver=webdriver.Chrome()
 driver.get("http://www.saucedemo.com/")
-login_button=czekaj_na_id("login-button")
+try:
+    login_button=czekaj_na_id("login-button")
+except TimeoutException:
+    print('Nie znaleziono')
+else:
+    print('Znaleziono')
+    print(login_button)
+finally:
+    make_screenshot(driver)
+    time.sleep(2)
+    driver.quit()
 
 
 make_screenshot(driver)
