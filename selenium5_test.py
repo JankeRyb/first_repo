@@ -2,13 +2,15 @@ from selenium import webdriver
 from selenium_funkcje import make_screenshot
 from selenium4_klasa import LoginPage
 import time
+import pytest
 
+@pytest.mark.parametrize('uzytkownik',['standard_user','standard_user2'])
 
-def test_login_page():
+def test_login_page(uzytkownik):
     driver=webdriver.Chrome()
-    page=LoginPage(driver,'user-name','password','login-button')
+    page=LoginPage(driver)
     page.open()
-    page.enter_username('standard_user')
+    page.enter_username(uzytkownik)
     page.enter_password('secret_sauce')
     page.click_login_button()
     time.sleep(1)

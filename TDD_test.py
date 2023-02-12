@@ -1,5 +1,6 @@
 # # #import functions
 from functions import *
+import pytest
 # # print(multiply(5,6))
 #
 #
@@ -15,6 +16,9 @@ from functions import *
 #     assert no_of_letters("xdddxd") == 6
 #     assert no_of_letters('mama.tata') == 8 #mozna ten warunek poprawic
 
+@pytest.mark.parametrize('number, result', [(1,1),(3,'fizz'),(5,'buzz'),(15,'fizzbuzz')])
+def test_fizzbuzz_param(number,result):
+    assert fizzbuzz(number)==result
 def test_fizzbuzz_basic():
     assert fizzbuzz(1)==1
     assert fizzbuzz(2)==2
